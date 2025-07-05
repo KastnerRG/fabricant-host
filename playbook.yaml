@@ -50,3 +50,5 @@
        - sudo
        - git
        - python3.11-venv
+
+  - import_tasks: proxmox.yml
