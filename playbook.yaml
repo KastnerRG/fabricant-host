@@ -51,4 +51,4 @@
        - git
        - python3.11-venv
 
-  - import_tasks: proxmox.yml
+  - import_tasks: proxmox.yaml
