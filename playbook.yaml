@@ -52,16 +52,16 @@
        - python3.11-venv
        - vim
 
-  # # Cleanup SSH
-  # - name: Require SSH Key
-  #   become: true
-  #   ansible.builtin.lineinfile:
-  #     line: DenyGroups services
-  #     path: /etc/ssh/sshd_config
-  #     regexp: "^(#)?DenyGroups" #PasswordAuthentication yes
-  #     state: present
-  #   notify:
-  #     - restart sshd
+  # Cleanup SSH
+  - name: Require SSH Key
+    become: true
+    ansible.builtin.lineinfile:
+      line: PasswordAuthentication no
+      path: /etc/ssh/sshd_config
+      regexp: "^(#)?PasswordAuthentication no"
+      state: present
+    notify:
+      - restart sshd
 
   - import_tasks: proxmox.yaml
 
