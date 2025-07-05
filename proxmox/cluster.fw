@@ -1,0 +1,13 @@
+[OPTIONS]
+
+enable: 1
+
+[IPSET management]
+
+100.0.0.0/8
+137.110.0.0/16
+
+[RULES]
+
+IN ACCEPT -source +dc/management -p tcp -dport 8006 -log nolog
+IN SSH(ACCEPT) -source 0.0.0.0/0 -log nolog

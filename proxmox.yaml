@@ -1,0 +1,9 @@
+# Set firewall
+- name: Install pve firewall config
+  become: true
+  ansible.builtin.copy:
+    src: proxmox/cluster.fw
+    dest: /etc/pve/firewall/cluster.fw
+    owner: root
+    group: www-data
+    mode: '0640'
