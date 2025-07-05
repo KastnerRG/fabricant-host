@@ -26,3 +26,9 @@
     ansible.builtin.shell:
       cmd: '{{ansible_env.HOME}}/.nvm/versions/node/v24.3.0/bin/node {{ansible_env.HOME}}/.nvm/versions/node/v24.3.0/lib/node_modules/@bitwarden/cli/build/bw.js sync --session `cat .bw_session`'
       chdir: '{{ansible_env.HOME}}/fabricant-host'
+
+# Set timezone
+  - name: Set timezone to America/Los_Angeles
+    become: true
+    community.general.timezone:
+      name: America/Los_Angeles
