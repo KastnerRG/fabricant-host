@@ -50,5 +50,29 @@
        - sudo
        - git
        - python3.11-venv
+       - vim
+
+  # # Cleanup SSH
+  # - name: Require SSH Key
+  #   become: true
+  #   ansible.builtin.lineinfile:
+  #     line: DenyGroups services
+  #     path: /etc/ssh/sshd_config
+  #     regexp: "^(#)?DenyGroups" #PasswordAuthentication yes
+  #     state: present
+  #   notify:
+  #     - restart sshd
 
   - import_tasks: proxmox.yaml
+
+  handlers:
+  - name: restart pve firewall
+    become: true
+    ansible.builtin.shell:
+      cmd: pve-firewall restart
+
+  - name: restart sshd
+    become: true
+    service:
+      name: sshd
+      state: reloaded
