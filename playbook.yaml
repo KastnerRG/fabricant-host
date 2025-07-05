@@ -51,6 +51,16 @@
        - git
        - python3.11-venv
        - vim
+  - name: Ensure these packages are not installed
+    become: true
+    ansible.builtin.apt:
+      state: absent
+      pkg:
+        - cups-browsed
+        - cups-filters
+        - cups-filters-core-drivers
+        - libcupsfilters2t64
+  - import_tasks: unattended-upgrades.yml
 
   # Cleanup SSH
   - name: Require SSH Key
@@ -65,6 +75,7 @@
 
   - import_tasks: proxmox.yaml
 
+  # Must always be at the bottom.
   handlers:
   - name: restart pve firewall
     become: true
