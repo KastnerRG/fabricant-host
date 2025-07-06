@@ -10,4 +10,6 @@ enable: 1
 [RULES]
 
 IN ACCEPT -source +dc/management -p tcp -dport 8006 -log nolog
+IN ACCEPT -source 0.0.0.0/0 -p tcp -dport 9100 -log nolog
+IN ACCEPT -source 0.0.0.0/0 -p tcp -dport 9290 -log nolog
 IN SSH(ACCEPT) -source 0.0.0.0/0 -log nolog
