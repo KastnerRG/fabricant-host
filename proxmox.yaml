@@ -35,7 +35,7 @@
     creates: '{{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin'
 
 - name: Get become pass
-  ansible.builtin.shell: ./become_pass.sh
+  ansible.builtin.shell: '{{ansible_env.HOME}}/fabricant-host/become_pass.sh'
   register: become_pass_result
   
 - name: Download and verify ostemplate
