@@ -1,5 +1,7 @@
 - name: Fabricant-Host
   hosts: localhost
+  vars_files:
+    - fabricant_users.yaml
   tasks:
 # Set up bw
   - name: Install nvm
@@ -61,6 +63,9 @@
         - cups-filters-core-drivers
         - libcupsfilters2t64
   - import_tasks: unattended-upgrades.yml
+  
+# Create users:
+  - import_tasks: create_users.yaml
 
   # Cleanup SSH
   - name: Require SSH Key
