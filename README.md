@@ -38,3 +38,7 @@ python -m pip install --upgrade pip poetry
 cd ~/fabricant-host/
 poetry install
 ```
+1. Install
+```
+ansible-playbook playbook.yml
+```
