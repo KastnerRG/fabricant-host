@@ -31,6 +31,6 @@
 - name: Add fabricant-admin to administrators group
   become: true
   ansible.builtin.shell:
-    cmd: pveum user add fabricant-admin --groups administrators > {{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin
+    cmd: pveum user add fabricant-admin@pam --groups administrators > {{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin
     creates: '{{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin'
   
