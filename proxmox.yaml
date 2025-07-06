@@ -9,7 +9,3 @@
     mode: '0640'
   notify:
     - restart pve firewall
-# Metrics Exporter
-- name: Install prometheus-pve-exporter python package
-  ansible.builtin.pip:
-    name: prometheus-pve-exporter
