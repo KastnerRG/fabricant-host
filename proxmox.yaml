@@ -9,12 +9,4 @@
     mode: '0640'
   notify:
     - restart pve firewall
-- name: Create pve administrators group
-  become: true
-  ansible.builtin.shell:
-    cmd: pveum group add administrators
-- name: Assign cluster administrator permissions to the newly created administrators group
-  become: true
-  ansible.builtin.shell:
-    cmd: sudo pveum acl modify / --roles Administrator --groups administrators 
   
