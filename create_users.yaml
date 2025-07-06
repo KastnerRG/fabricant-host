@@ -38,6 +38,7 @@
 - name: pve user
   become: true
   ansible.builtin.shell:
-    cmd: pveum user add {{ item["username"] }}@pam
+    cmd: pveum user add {{ item["username"] }}@pam > /home/fabricant-admin/fabricant/.pve-group-logs/{{ item["username"] }}
+    creates: /home/fabricant-admin/fabricant/.pve-group-logs/{{ item["username"] }}
   loop: "{{users}}"
   

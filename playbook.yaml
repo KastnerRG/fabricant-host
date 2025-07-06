@@ -63,6 +63,8 @@
         - cups-filters-core-drivers
         - libcupsfilters2t64
   - import_tasks: unattended-upgrades.yml
+
+  - import_tasks: proxmox.yaml
   
 # Create users:
   - import_tasks: create_users.yaml
@@ -77,8 +79,6 @@
       state: present
     notify:
       - restart sshd
-
-  - import_tasks: proxmox.yaml
 
   # Must always be at the bottom.
   handlers:
