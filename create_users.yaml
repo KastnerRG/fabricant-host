@@ -43,7 +43,8 @@
   loop: "{{users}}"
 - name: pve user group add
   become: true
-  when: "{{lookup('subelements', users, 'pve-groups', {'skip_missing': True})}}"
+  when: item["pve-group"] | default('') | length > 0
   ansible.builtin.shell:
     cmd: pveum user modify {{ item["username"] }}@pam --groups {{item.groups | default([]) | join(",")}}
+  loop: "{{users}}"
   
