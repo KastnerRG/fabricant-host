@@ -74,7 +74,10 @@
 # Create users:
   - import_tasks: create_users.yaml
 
-  # Cleanup SSH
+# Monitoring
+  - import_tasks: monitoring.yaml
+
+# Cleanup SSH
   - name: Require SSH Key
     become: true
     ansible.builtin.lineinfile:
@@ -85,7 +88,7 @@
     notify:
       - restart sshd
 
-  # Must always be at the bottom.
+# Must always be at the bottom.
   handlers:
   - name: restart pve firewall
     become: true
