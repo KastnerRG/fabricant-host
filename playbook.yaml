@@ -53,6 +53,7 @@
        - git
        - python3.11-venv
        - vim
+       - policykit-1
   - name: Ensure these packages are not installed
     become: true
     ansible.builtin.apt:
@@ -76,7 +77,7 @@
 
 # Monitoring
   - import_tasks: monitoring.yaml
-  
+
 # Auto deploy
   - name: Ensure systemd user dir exists
     ansible.builtin.file:
