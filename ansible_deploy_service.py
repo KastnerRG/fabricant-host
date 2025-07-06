@@ -133,7 +133,7 @@ class Service:
                     self.__log.info('Load the proxmox password')
                     become_pass = subprocess.check_output([f'{dirname}/become-pass.sh'],
                         env=new_env, cwd=self.PROJECT_ROOT)
-                    new_env['PROXMOX_PASSWORD'] = become_pass
+                    new_env['PROXMOX_PASSWORD'] = become_pass.decode('utf-8')
 
                     self.__log.info('Run the playbook')
                     playbook_cmd = [
