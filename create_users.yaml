@@ -41,4 +41,9 @@
     cmd: pveum user add {{ item["username"] }}@pam > /home/fabricant-admin/fabricant-host/.pve-user-logs/{{ item["username"] }}
     creates: /home/fabricant-admin/fabricant-host/.pve-user-logs/{{ item["username"] }}
   loop: "{{users}}"
+- name: pve user group add
+  become: true
+  when: "{{lookup('subelements', users, 'pve-groups', {'skip_missing': True})}}"
+  ansible.builtin.shell:
+    cmd: pveum user modify {{ item["username"] }}@pam --groups {{item.groups | default([]) | join(",")}}
   
