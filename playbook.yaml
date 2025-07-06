@@ -3,8 +3,6 @@
   vars_files:
     - fabricant_users.yaml
     - fabricant_vms.yaml
-  environment:
-    PROXMOX_PASSWORD: '{{ lookup("env", "PROXMOX_PASSWORD") }}'
 
   tasks:
 # Set up bw
