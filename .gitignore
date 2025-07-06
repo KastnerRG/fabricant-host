@@ -258,3 +258,6 @@ prometheus-data/
 .secrets
 alertmanager/alertmanager.yml
 postgres/data
+
+.pve-user-logs/
+.pve-group-logs/
