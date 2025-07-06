@@ -120,15 +120,20 @@ class Service:
                         'ansible.cfg').absolute().as_posix()
                     new_env['ANSIBLE_INVENTORY'] = self.PROJECT_ROOT.joinpath(
                         'inventory.yaml').absolute().as_posix()
+                    self.__log.info('Finished installing')
+
+                    self.__log.info('Load the bw session')
                     bw_session_path = self.PROJECT_ROOT.joinpath('.bw_session')
                     with open(bw_session_path, 'r', encoding='utf-8') as handle:
                         bw_session = handle.read()
                     new_env['BW_SESSION'] = bw_session
                     # Get become-pass
+                    self.__log.info('Load the proxmox password')
                     become_pass = subprocess.check_output(['become-pass.sh'],
                         env=new_env, cwd=self.PROJECT_ROOT)
                     new_env['PROXMOX_PASSWORD'] = become_pass
 
+                    self.__log.info('Run the playbook')
                     playbook_cmd = [
                         '.venv/bin/ansible-playbook',
                     ]
