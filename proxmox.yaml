@@ -38,7 +38,6 @@
   community.general.proxmox_template:
     node: fabricant
     api_user: fabricant-admin@pam
-    api_password: '{{ansible_env.PROXMOX_PASSWORD}}'
     api_host: fabricant
     url: '{{ item["url"] }}'
     checksum_algorithm: '{{ item["checksum_algorithm"] }}'

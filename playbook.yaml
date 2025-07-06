@@ -3,6 +3,9 @@
   vars_files:
     - fabricant_users.yaml
     - fabricant_vms.yaml
+  environment:
+    PROXMOX_PASSWORD: '{{ansible_env.PROXMOX_PASSWORD}}'
+
   tasks:
 # Set up bw
   - name: Install nvm
