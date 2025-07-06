@@ -9,3 +9,8 @@
     mode: '0640'
   notify:
     - restart pve firewall
+- name: Create pve administrators group
+  become: true
+  ansible.builtin.shell:
+    cmd: pveum group add administrators
+  
