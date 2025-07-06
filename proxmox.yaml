@@ -17,8 +17,8 @@
 - name: Create pve administrators group
   become: true
   ansible.builtin.shell:
-    cmd: pveum group add administrators > /home/fabricant-admin/fabricant/.pve-group-logs/administrators
-    creates: /home/fabricant-admin/fabricant/.pve-group-logs/administrators
+    cmd: pveum group add administrators > /home/fabricant-admin/fabricant-host/.pve-group-logs/administrators
+    creates: /home/fabricant-admin/fabricant-host/.pve-group-logs/administrators
 - name: Assign cluster administrator permissions to the newly created administrators group
   become: true
   ansible.builtin.shell:
