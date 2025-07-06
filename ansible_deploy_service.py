@@ -128,8 +128,10 @@ class Service:
                         bw_session = handle.read()
                     new_env['BW_SESSION'] = bw_session
                     # Get become-pass
+                    script_path = os.path.abspath(__file__)
+                    dirname = os.path.dirname(script_path)
                     self.__log.info('Load the proxmox password')
-                    become_pass = subprocess.check_output(['become-pass.sh'],
+                    become_pass = subprocess.check_output([f'{dirname}/become-pass.sh'],
                         env=new_env, cwd=self.PROJECT_ROOT)
                     new_env['PROXMOX_PASSWORD'] = become_pass
 
