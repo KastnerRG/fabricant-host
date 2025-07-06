@@ -9,4 +9,18 @@
     mode: '0640'
   notify:
     - restart pve firewall
+- name: Create pve group log folder
+  ansible.builtin.file:
+    path: /home/fabricant-admin/fabricant/.pve-group-logs
+    state: directory
+    mode: '0755'
+- name: Create pve administrators group
+  become: true
+  ansible.builtin.shell:
+    cmd: pveum group add administrators > /home/fabricant-admin/fabricant/.pve-group-logs/administrators
+    creates: /home/fabricant-admin/fabricant/.pve-group-logs/administrators
+# - name: Assign cluster administrator permissions to the newly created administrators group
+#   become: true
+#   ansible.builtin.shell:
+#     cmd: sudo pveum acl modify / --roles Administrator --groups administrators 
   
