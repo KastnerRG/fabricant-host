@@ -34,3 +34,12 @@
     cmd: pveum user add fabricant-admin@pam --groups administrators > {{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin
     creates: '{{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin'
   
+- name: Download and verify ostemplate
+  community.general.proxmox_template:
+    node: fabricant
+    api_user: fabricant-admin@pam
+    api_host: fabricant
+    url: '{{ item["url"] }}'
+    checksum_algorithm: '{{ item["checksum_algorithm"] }}'
+    checksum: '{{ item["checksum"] }}'
+  loop: "{{ostemplates}}"

@@ -124,6 +124,10 @@ class Service:
                     with open(bw_session_path, 'r', encoding='utf-8') as handle:
                         bw_session = handle.read()
                     new_env['BW_SESSION'] = bw_session
+                    # Get become-pass
+                    become_pass = subprocess.check_output(['become-pass.sh'], env=new_env)
+                    new_env['PROXMOX_PASSWORD'] = become_pass
+
                     playbook_cmd = [
                         '.venv/bin/ansible-playbook',
                     ]

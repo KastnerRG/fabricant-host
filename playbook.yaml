@@ -2,6 +2,7 @@
   hosts: localhost
   vars_files:
     - fabricant_users.yaml
+    - fabricant_vms.yaml
   tasks:
 # Set up bw
   - name: Install nvm
