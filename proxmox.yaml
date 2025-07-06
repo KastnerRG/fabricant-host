@@ -11,7 +11,7 @@
     - restart pve firewall
 - name: Create pve group log folder
   ansible.builtin.file:
-    path: /home/fabricant-admin/fabricant/.pve-group-logs
+    path: /home/fabricant-admin/fabricant-host/.pve-group-logs
     state: directory
     mode: '0755'
 - name: Create pve administrators group
