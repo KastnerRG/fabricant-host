@@ -125,7 +125,8 @@ class Service:
                         bw_session = handle.read()
                     new_env['BW_SESSION'] = bw_session
                     # Get become-pass
-                    become_pass = subprocess.check_output(['become-pass.sh'], env=new_env, cwd=self.PROJECT_ROOT)
+                    become_pass = subprocess.check_output(['become-pass.sh'],
+                        env=new_env, cwd=self.PROJECT_ROOT)
                     new_env['PROXMOX_PASSWORD'] = become_pass
 
                     playbook_cmd = [
