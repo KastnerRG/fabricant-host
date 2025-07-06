@@ -7,8 +7,8 @@ StartLimitIntervalSec=0
 Type=exec
 Restart=always
 RestartSec=1
-ExecStart={{ansible_env.HOME}}/fabricant/.venv/bin/python {{ansible_env.HOME}}/fabricant/ansible_deploy_service.py
-WorkingDirectory={{ansible_env.HOME}}/fabricant
+ExecStart={{ansible_env.HOME}}/fabricant-host/.venv/bin/python {{ansible_env.HOME}}/fabricant-host/ansible_deploy_service.py
+WorkingDirectory={{ansible_env.HOME}}/fabricant-host
 
 [Install]
 WantedBy=default.target
