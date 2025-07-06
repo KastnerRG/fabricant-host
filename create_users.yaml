@@ -38,6 +38,6 @@
 - name: pve user
   become: true
   ansible.builtin.shell:
-    cmd: pveum user add {{ item["username"] }}
+    cmd: pveum user add {{ item["username"] }}@pam
   loop: "{{users}}"
   
