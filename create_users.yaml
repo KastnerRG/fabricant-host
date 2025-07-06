@@ -45,6 +45,6 @@
   become: true
   when: item["pve-groups"] | default('') | length > 0
   ansible.builtin.shell:
-    cmd: pveum user modify {{ item["username"] }}@pam --groups {{item.pve-groups | default([]) | join(",")}}
+    cmd: pveum user modify {{ item["username"] }}@pam --groups {{item.["pve-groups"] | default([]) | join(",")}}
   loop: "{{users}}"
   
