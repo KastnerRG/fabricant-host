@@ -64,6 +64,11 @@
         - libcupsfilters2t64
   - import_tasks: unattended-upgrades.yml
 
+# Qualys/Trellix
+  - import_tasks: oec_qualys_trellix.yaml
+    vars:
+      installer: '{{ansible_env.HOME}}/installers/qualys_trellix/oec-qualystrellixinstallers-linux.tgz'
+
   - import_tasks: proxmox.yaml
   
 # Create users:
