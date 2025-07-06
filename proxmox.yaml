@@ -27,5 +27,10 @@
 - name: Assign cluster administrator permissions to the newly created administrators group
   become: true
   ansible.builtin.shell:
-    cmd: sudo pveum acl modify / --roles Administrator --groups administrators 
+    cmd: pveum acl modify / --roles Administrator --groups administrators 
+- name: Add fabricant-admin to administrators group
+  become: true
+  ansible.builtin.shell:
+    cmd: pveum user add fabricant-admin --groups administrators > {{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin
+    creates: '{{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin'
   
