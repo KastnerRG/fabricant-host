@@ -33,17 +33,14 @@
   ansible.builtin.shell:
     cmd: pveum user add fabricant-admin@pam --groups administrators > {{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin
     creates: '{{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin'
-
-- name: Get become pass
-  ansible.builtin.shell: '{{ansible_env.HOME}}/fabricant-host/become-pass.sh'
-  register: become_pass_result
   
 - name: Download and verify ostemplate
   community.general.proxmox_template:
     node: fabricant
     api_user: fabricant-admin@pam
     api_host: fabricant
-    api_password: '{{ become_pass_result.stdout }}'
+    api_password: >-
+      {{ lookup('community.general.bitwarden', 'fabricant-admin', field='password') }}'
     url: '{{ item["url"] }}'
     checksum_algorithm: '{{ item["checksum_algorithm"] }}'
     checksum: '{{ item["checksum"] }}'
