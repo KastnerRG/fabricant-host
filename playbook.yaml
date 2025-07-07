@@ -3,6 +3,8 @@
   vars_files:
     - fabricant_users.yaml
     - fabricant_vms.yaml
+  environment:
+    PATH: '{{ ansible_env.HOME }}/.nvm/versions/node/v24.3.0/bin:{{ ansible_env.PATH }}'
 
   tasks:
 # Set up bw
