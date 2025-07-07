@@ -141,7 +141,7 @@ class Service:
                     self.set_retval('ansible-playbook', playbook_run)
 
                     poetry_install = subprocess.check_call(
-                        ['.venv/bin/poetry', 'install'], env=new_env)
+                        ['.venv/bin/poetry', 'install', '--no-root'], env=new_env)
                     self.set_retval('poetry-install', poetry_install)
                     self.last_run = dt.datetime.now()
                     self.last_deploy_time = dt.datetime.now()
