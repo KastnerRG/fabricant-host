@@ -16,6 +16,8 @@
     args:
       executable: /bin/bash
       creates: "{{ ansible_env.HOME }}/.nvm/versions/node/v24.3.0/bin/npm"
+  - name: Set v24.3.0 default
+    ansible.builtin.shell: nvm alias default 24.3.0
   - name: Install BitWarden CLI
     ansible.builtin.command:
       cmd: >
