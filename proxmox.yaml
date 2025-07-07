@@ -35,7 +35,6 @@
     creates: '{{ansible_env.HOME}}/fabricant-host/.pve-user-logs/fabricant-admin'
   
 - name: Download ostemplate
-  community.general.proxmox_template:
   become: true
   ansible.builtin.shell:
     cmd: pveam download {{ item["storage"] }} {{ item["image"] }}
