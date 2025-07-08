@@ -62,6 +62,7 @@
        - python3.11-venv
        - vim
        - policykit-1
+       - tmux
   - name: Ensure these packages are not installed
     become: true
     ansible.builtin.apt:
