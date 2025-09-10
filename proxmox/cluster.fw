@@ -11,7 +11,8 @@ enable: 1
 
 [IPSET public]
 
-0.0.0.0/0
+0.0.0.0/1
+128.0.0.0/1
 
 [IPSet active_directory]
 
