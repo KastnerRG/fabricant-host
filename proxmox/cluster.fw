@@ -17,6 +17,7 @@ enable: 1
 [IPSet active_directory]
 
 132.239.17.124/32 # e4e-nas.ucsd.edu
+132.239.95.106/32 # fabricant-prod.ucsd.edu
 
 [RULES]
 
