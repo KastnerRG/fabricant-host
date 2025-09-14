@@ -1,30 +1,63 @@
 [OPTIONS]
-
 enable: 1
+# Proxmox adds ESTABLISHED,RELATED accepts automatically; no need to open ephemeral responses.
 
 [RULES]
+# ---- Host management (ONLY if this is the Proxmox node, not the DC VM) ----
+IN HTTPS(ACCEPT) -source +dc/ucsd -log nolog   # Proxmox Web UI
+IN SSH(ACCEPT)   -source +dc/public -log nolog # Proxmox SSH
 
-IN HTTPS(ACCEPT) -source +dc/ucsd -log nolog # Web UI
-IN SSH(ACCEPT) -source +dc/public -log nolog
+# ---- Outbound from DC ----
+OUT NTP(ACCEPT) -log nolog                                  # DC syncing to external NTP
+OUT ACCEPT -p udp -dport 53 -dest +dc/ucsd -log nolog       # DNS forwarders (if used)
+OUT ACCEPT -p tcp -dport 53 -dest +dc/ucsd -log nolog       # DNS forwarders (TCP)
+# Inter-DC / AD egress (replication/SMB/RPC/GC/LDAP/KDC/ADWS/DFSR)
+OUT ACCEPT -p tcp -dport 88,135,389,445,464,636,3268,3269,5722,9389 -dest +dc/sealab -log nolog
+OUT ACCEPT -p udp -dport 88,464 -dest +dc/sealab -log nolog
+OUT ACCEPT -p tcp -dport 49152:65535 -dest +dc/sealab -log nolog   # RPC dynamic to partner DCs
 
-OUT NTP(ACCEPT) -log nolog # External NTP sync
-OUT ACCEPT -dest +dc/sealab -p udp -sport 137:138 -log nolog # NetBIOS Broadcast
-OUT ACCEPT -dest +dc/sealab -p udp -dport 137:138 -log nolog # NetBIOS Answer
-GROUP dns_apt_ssh_ntp # My standard VM firewall group: DNS out, Web (Apt-Mirror) out, NTP out, SSH in
-IN ACCEPT -source +dc/ucsd -p udp -dport 53 -log nolog # DNS
-IN ACCEPT -source +dc/ucsd -p tcp -dport 53 -log nolog # DNS
-IN ACCEPT -source +dc/sealab -p udp -dport 88 -log nolog # Kerberos
-IN ACCEPT -source +dc/sealab -p tcp -dport 88 -log nolog # Kerberos
-IN ACCEPT -source +dc/ucsd -p udp -dport 123 -log nolog # NTP
-IN ACCEPT -source +dc/sealab -p tcp -dport 135 -log nolog # RPC Locator
-IN ACCEPT -source +dc/sealab -p udp -dport 137:138 -log nolog # NetBIOS Request
-IN ACCEPT -source +dc/sealab -p tcp -dport 139 -log nolog # NetBIOS Session
-IN ACCEPT -source +dc/ucsd -p udp -dport 389 -log nolog # LDAP
-IN ACCEPT -source +dc/ucsd -p tcp -dport 389 -log nolog # LDAP
-IN ACCEPT -source +dc/sealab -p tcp -dport 445 -log nolog # SMB over TCP
-IN ACCEPT -source +dc/sealab -p udp -dport 464 -log nolog # Kerberos password
-IN ACCEPT -source +dc/sealab -p tcp -dport 464 -log nolog # Kerberos password
-IN ACCEPT -source +dc/ucsd -p tcp -dport 636 -log nolog # LDAPS
-IN ACCEPT -source +dc/sealab -p tcp -dport 3268 -log nolog # Global Catalog
-IN ACCEPT -source +dc/sealab -p tcp -dport 3269 -log nolog # Global Catalog SSL
-IN ACCEPT -source +dc/sealab -p udp -dport 49152:65535 -log nolog # Dynamic RPC
+# (Optional/Legacy) NetBIOS broadcast if you really need it on the DC:
+OUT ACCEPT -p udp -sport 137:138 -dest +dc/sealab -log nolog
+OUT ACCEPT -p udp -dport 137:138 -dest +dc/sealab -log nolog
+
+# ---- Inbound to DC from clients/DCs ----
+# DNS (client -> DC)
+IN ACCEPT -p udp -dport 53  -source +dc/ucsd -log nolog
+IN ACCEPT -p tcp -dport 53  -source +dc/ucsd -log nolog
+
+# Kerberos
+IN ACCEPT -p udp -dport 88  -source +dc/sealab -log nolog
+IN ACCEPT -p tcp -dport 88  -source +dc/sealab -log nolog
+
+# NTP (only if DC is time source for clients)
+IN ACCEPT -p udp -dport 123 -source +dc/ucsd -log nolog
+
+# RPC endpoint mapper
+IN ACCEPT -p tcp -dport 135 -source +dc/sealab -log nolog
+
+# NetBIOS/SMB (mostly for legacy; SMB 445 is still used)
+IN ACCEPT -p udp -dport 137:138 -source +dc/sealab -log nolog
+IN ACCEPT -p tcp -dport 139 -source +dc/sealab -log nolog
+IN ACCEPT -p tcp -dport 445 -source +dc/sealab -log nolog
+
+# LDAP / LDAPS
+IN ACCEPT -p udp -dport 389 -source +dc/ucsd   -log nolog
+IN ACCEPT -p tcp -dport 389 -source +dc/ucsd   -log nolog
+IN ACCEPT -p tcp -dport 636 -source +dc/ucsd   -log nolog
+
+# Kerberos password change
+IN ACCEPT -p udp -dport 464 -source +dc/sealab -log nolog
+IN ACCEPT -p tcp -dport 464 -source +dc/sealab -log nolog
+
+# Global Catalog
+IN ACCEPT -p tcp -dport 3268 -source +dc/sealab -log nolog
+IN ACCEPT -p tcp -dport 3269 -source +dc/sealab -log nolog
+
+# AD Web Services (PowerShell/RSAT often use this)
+IN ACCEPT -p tcp -dport 9389 -source +dc/sealab -log nolog
+
+# DFS Replication (between DCs)
+IN ACCEPT -p tcp -dport 5722 -source +dc/sealab -log nolog
+
+# RPC dynamic
+IN ACCEPT -p tcp -dport 49152:65535 -source +dc/sealab -log nolog
