@@ -5,6 +5,7 @@ enable: 1
 [RULES]
 
 IN HTTPS(ACCEPT) -source +dc/ucsd -log nolog # Web UI
+IN SSH(ACCEPT) -source +dc/public -log nolog
 
 OUT NTP(ACCEPT) -log nolog # External NTP sync
 OUT ACCEPT -dest +dc/sealab -p udp -sport 137:138 -log nolog # NetBIOS Broadcast

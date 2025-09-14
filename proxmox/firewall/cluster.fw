@@ -7,11 +7,14 @@ enable: 1
 100.0.0.0/8
 128.54.0.0/16
 137.110.0.0/16
+132.239.10.0/24 # Sealab Wifi?
 132.239.95.105/32 # fabricant-nat.ucsd.edu
+132.239.17.124/32 # e4e-nas.ucsd.edu
+132.239.95.106/32 # fabricant-prod.ucsd.edu
 
 [IPSET sealab]
 
-132.239.10.0/24 # Wifi?
+132.239.10.0/24 # Sealab Wifi?
 132.239.95.105/32 # fabricant-nat.ucsd.edu
 132.239.17.124/32 # e4e-nas.ucsd.edu
 132.239.95.106/32 # fabricant-prod.ucsd.edu
