@@ -9,6 +9,37 @@
     mode: '0640'
   notify:
     - restart pve firewall
+- name: Install fabricant-prod firewall config
+  become: true
+  ansible.builtin.copy:
+    src: proxmox/firewall/fabricant-prod.fw
+    dest: /etc/pve/firewall/100.fw
+    owner: root
+    group: www-data
+    mode: '0640'
+  notify:
+    - restart pve firewall
+- name: Install pfsense firewall config
+  become: true
+  ansible.builtin.copy:
+    src: proxmox/firewall/pfsense.fw
+    dest: /etc/pve/firewall/101.fw
+    owner: root
+    group: www-data
+    mode: '0640'
+  notify:
+    - restart pve firewall
+- name: Install fabricant-ldap firewall config
+  become: true
+  ansible.builtin.copy:
+    src: proxmox/firewall/fabricant-ldap.fw
+    dest: /etc/pve/firewall/103.fw
+    owner: root
+    group: www-data
+    mode: '0640'
+  notify:
+    - restart pve firewall
+
 - name: Create pve group log folder
   ansible.builtin.file:
     path: '{{ansible_env.HOME}}/fabricant-host/.pve-group-logs'

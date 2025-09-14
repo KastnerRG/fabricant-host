@@ -1,0 +1,35 @@
+[OPTIONS]
+
+enable: 1
+
+[RULES]
+
+IN ACCEPT -source +dc/active_directory -p udp -dport 7636 -log nolog
+IN ACCEPT -source +dc/active_directory -p tcp -dport 7636 -log nolog
+IN ACCEPT -source +dc/active_directory -p udp -dport 7389 -log nolog
+IN ACCEPT -source +dc/active_directory -p tcp -dport 7389 -log nolog
+IN ACCEPT -source +dc/active_directory -p udp -dport 749 -log nolog
+IN ACCEPT -source +dc/active_directory -p tcp -dport 749 -log nolog
+IN SSH(ACCEPT) -source +dc/public -log nolog
+IN HTTPS(ACCEPT) -source +dc/management -log nolog
+OUT NTP(ACCEPT) -log nolog # External NTP sync
+OUT ACCEPT -dest +dc/active_directory -p udp -sport 137:138 -log nolog # NetBIOS Broadcast
+OUT ACCEPT -dest +dc/active_directory -p udp -dport 137:138 -log nolog # NetBIOS Answer
+GROUP dns_apt_ssh_ntp # My standard VM firewall group: DNS out, Web (Apt-Mirror) out, NTP out, SSH in
+IN ACCEPT -source +dc/active_directory -p udp -dport 53 -log nolog # DNS
+IN ACCEPT -source +dc/active_directory -p tcp -dport 53 -log nolog # DNS
+IN ACCEPT -source +dc/active_directory -p udp -dport 88 -log nolog # Kerberos
+IN ACCEPT -source +dc/active_directory -p tcp -dport 88 -log nolog # Kerberos
+IN ACCEPT -source +dc/active_directory -p udp -dport 123 -log nolog # NTP
+IN ACCEPT -source +dc/active_directory -p tcp -dport 135 -log nolog # RPC Locator
+IN ACCEPT -source +dc/active_directory -p udp -dport 137:138 -log nolog # NetBIOS Request
+IN ACCEPT -source +dc/active_directory -p tcp -dport 139 -log nolog # NetBIOS Session
+IN ACCEPT -source +dc/active_directory -p udp -dport 389 -log nolog # LDAP
+IN ACCEPT -source +dc/active_directory -p tcp -dport 389 -log nolog # LDAP
+IN ACCEPT -source +dc/active_directory -p tcp -dport 445 -log nolog # SMB over TCP
+IN ACCEPT -source +dc/active_directory -p udp -dport 464 -log nolog # Kerberos password
+IN ACCEPT -source +dc/active_directory -p tcp -dport 464 -log nolog # Kerberos password
+IN ACCEPT -source +dc/active_directory -p tcp -dport 636 -log nolog # LDAPS
+IN ACCEPT -source +dc/active_directory -p tcp -dport 3268 -log nolog # Global Catalog
+IN ACCEPT -source +dc/active_directory -p tcp -dport 3269 -log nolog # Global Catalog SSL
+IN ACCEPT -source +dc/active_directory -p udp -dport 49152:65535 -sport 137 -log nolog # Dynamic RPC
