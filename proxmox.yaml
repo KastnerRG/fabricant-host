@@ -19,6 +19,16 @@
     mode: '0640'
   notify:
     - restart pve firewall
+- name: Install fabricant-prod firewall config
+  become: true
+  ansible.builtin.copy:
+    src: proxmox/firewall/fabricant-prod.fw
+    dest: /etc/pve/firewall/102.fw
+    owner: root
+    group: www-data
+    mode: '0640'
+  notify:
+    - restart pve firewall
 - name: Install pfsense firewall config
   become: true
   ansible.builtin.copy:
