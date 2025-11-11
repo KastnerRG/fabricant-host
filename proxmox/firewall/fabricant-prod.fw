@@ -7,8 +7,8 @@ enable: 1
 IN ACCEPT -source +dc/public -p tcp -dport 7233 -log nolog
 IN ACCEPT -source +dc/public -p tcp -dport 9000 -log nolog
 IN ACCEPT -source +dc/public -p tcp -dport 9100 -log nolog # fabricant-prod
-IN ACCEPT -source +dc/public -p tcp -dport 9095 -log nolog # fish sense services
-IN ACCEPT -source +dc/public -p tcp -dport 9101 -log nolog # label studio reporter
+IN ACCEPT -source +dc/public -p tcp -dport 9095 -log nolog # FishSense services
+IN ACCEPT -source +dc/public -p tcp -dport 4318 -log nolog # Traefik Metrics
 IN PostgreSQL(ACCEPT) -source +dc/ucsd -log nolog
 IN HTTPS(ACCEPT) -source +dc/public -log nolog
 IN HTTP(ACCEPT) -source +dc/public -log nolog
