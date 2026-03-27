@@ -83,7 +83,7 @@
     vars:
       installer: '{{ansible_env.HOME}}/installers/qualys_trellix/oec-qualystrellixinstallers-linux.tgz'
 
-  - import_tasks: proxmox.yaml
+  #- import_tasks: proxmox.yaml
   
 # Create users:
   - import_tasks: create_users.yaml
