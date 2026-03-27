@@ -61,7 +61,8 @@
        - git
        - python3.13-venv
        - vim
-       - policykit-1
+       - polkitd
+       - pkexec
        - htop
        - tmux
   - name: Ensure these packages are not installed
