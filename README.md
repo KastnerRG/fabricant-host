@@ -26,7 +26,7 @@ bw unlock --raw > ~/fabricant-host/.bw_session
 ```
 1. Create a venv at `~/fabricant-host/.venv`
 ```
-python3 -m venv ~/fabricant-host/.venv`
+python3 -m venv ~/fabricant-host/.venv
 ```
 1. Activate venv
 ```
