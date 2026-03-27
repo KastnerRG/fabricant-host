@@ -8,7 +8,7 @@ fabricant.ucsd.edu configuration
 1. Install `sudo`, `git`, `python3.13-venv`
 1. Clone this repo
 ```
-git clone git@github.com:KastnerRG/fabricant.git /home/fabricant-admin/fabricant-host
+git clone git@github.com:KastnerRG/fabricant-host.git /home/fabricant-admin/fabricant-host
 ```
 1. Install Bitwarden Client
 ```
