@@ -5,7 +5,7 @@ fabricant.ucsd.edu configuration
 1. Create a `fabricant-admin` user and add it to the sudoers group
 1. Create and install a GitHub deploy key
 `. Ensure that the system can SSH into itself
-1. Install `sudo`, `git`, `python3.11-venv`
+1. Install `sudo`, `git`, `python3.13-venv`
 1. Clone this repo
 ```
 git clone git@github.com:KastnerRG/fabricant.git /home/fabricant-admin/fabricant-host
