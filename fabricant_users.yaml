@@ -15,3 +15,15 @@ users:
     pve-groups:
       - administrators
     password: $6$rounds=656000$K2VO4J5uMFE3Eb6A$exJwg.2to2a.wP.X/8DSLKz1kJoe9hiP.SmjMg.TzFLPbxsmurhdYCbUYW.naPljdVgtAr9nlERdSR8GObOGb1
+  - username: d.zuberi
+    name: Danial Zuberi
+    authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP6geLo8pS0dU9jOKdNkLY6pBrTGlaP+DvIdicxAVxZj dzuberi@kilogram
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBM09OFCP+hcvu6S/Ikl7LRj7qPsGjfreclJFRFF0lhu dzuberi@DESKTOP-BIFLG0S
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMJpX5YWVEwpcmfQpPWpXks3AB27wYOTLuazguSzdJK7 dzuberi522@gmail
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF8HSEwws1dhjpdIB/HgvBpHJYVotGwb0CzMqbIHhCMi dzube@DESKTOP-BIFLG0S
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG+bBt46zXmHIbLwGC7WfoGHZQ9xIlSix5NKamgTUhhM dzuberi@Danials-MacBook-Pro.local
+    expires: "2030-12-31 23:59:59"
+    pve-groups:
+      - administrators
+    password: $6$f2c4.HEfvbX4iyjo$u.trGomNbpx2AVQJcLLkTckNRPwKCxXpPhbAHOlwHyaj8cGiN9JYgv.uhGM8JtQS0lTJSRVhH4TceEuSNsNye1
