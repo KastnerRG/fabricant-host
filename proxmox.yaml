@@ -7,6 +7,7 @@
     owner: root
     group: www-data
     mode: '0640'
+    unsafe_writes: yes
   notify:
     - restart pve firewall
 - name: Install fabricant-prod firewall config
@@ -17,6 +18,7 @@
     owner: root
     group: www-data
     mode: '0640'
+    unsafe_writes: yes
   notify:
     - restart pve firewall
 # - name: Install fabricant-prod firewall config
@@ -37,6 +39,7 @@
     owner: root
     group: www-data
     mode: '0640'
+    unsafe_writes: yes
   notify:
     - restart pve firewall
 - name: Install fabricant-ldap firewall config
@@ -47,6 +50,7 @@
     owner: root
     group: www-data
     mode: '0640'
+    unsafe_writes: yes
   notify:
     - restart pve firewall
 
