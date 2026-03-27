@@ -59,9 +59,10 @@
       pkg:
        - sudo
        - git
-       - python3.11-venv
+       - python3.13-venv
        - vim
        - policykit-1
+       - htop
        - tmux
   - name: Ensure these packages are not installed
     become: true
