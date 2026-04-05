@@ -1,0 +1,18 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+
+    runs-on: fabricant-host 
+
+    steps:
+      - name: Run Ansible Playbook
+        run: |
+          pushd /home/fabricant-deploy/fabricant-host
+          source /home/fabricant-deploy/venv/bin/activate
+          ansible-playbook -i inventory playbook.yaml
+          popd
