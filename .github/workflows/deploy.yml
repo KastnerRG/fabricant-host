@@ -13,6 +13,7 @@ jobs:
       - name: Run Ansible Playbook
         run: |
           pushd /home/fabricant-deploy/fabricant-host
+          git pull origin main
           source /home/fabricant-deploy/fabricant-host/.venv/bin/activate
           ansible-playbook playbook.yaml
           popd
