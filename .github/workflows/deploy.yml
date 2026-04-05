@@ -1,4 +1,4 @@
-name: Rust
+name: Deploy to Fabricant-Host
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
 
-    runs-on: fabricant-host 
+    runs-on: self-hosted
 
     steps:
       - name: Run Ansible Playbook
