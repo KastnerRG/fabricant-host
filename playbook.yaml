@@ -40,6 +40,7 @@
 # Set timezone
   - name: Set timezone to America/Los_Angeles
     become: true
+    become_user: fabricant-admin
     community.general.timezone:
       name: America/Los_Angeles
 
@@ -48,6 +49,7 @@
 # Packages
   - name: Ensure that system is up to date
     become: true
+    become_user: fabricant-admin
     apt:
       name: "*"
       state: latest
@@ -55,6 +57,7 @@
       update_cache: yes
   - name: Install/update system packages
     become: true
+    become_user: fabricant-admin
     ansible.builtin.apt:
       pkg:
        - sudo
@@ -67,6 +70,7 @@
        - tmux
   - name: Ensure these packages are not installed
     become: true
+    become_user: fabricant-admin
     ansible.builtin.apt:
       state: absent
       pkg:
@@ -113,6 +117,7 @@
 # Cleanup SSH
   - name: Require SSH Key
     become: true
+    become_user: fabricant-admin
     ansible.builtin.lineinfile:
       line: PasswordAuthentication no
       path: /etc/ssh/sshd_config
@@ -125,11 +130,13 @@
   handlers:
   - name: restart pve firewall
     become: true
+    become_user: fabricant-admin
     ansible.builtin.shell:
       cmd: pve-firewall restart
 
   - name: restart sshd
     become: true
+    become_user: fabricant-admin
     service:
       name: sshd
       state: reloaded

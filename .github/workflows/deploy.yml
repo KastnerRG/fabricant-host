@@ -14,5 +14,5 @@ jobs:
         run: |
           pushd /home/fabricant-deploy/fabricant-host
           source /home/fabricant-deploy/fabricant-host/.venv/bin/activate
-          ansible-playbook -i inventory playbook.yaml
+          ansible-playbook playbook.yaml
           popd
