@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: Run Ansible Playbook
         run: |
-          pushd /home/fabricant-deploy/fabricant-host
+          pushd /home/fabricant-admin/fabricant-host
           git pull origin main
-          source /home/fabricant-deploy/fabricant-host/.venv/bin/activate
+          source /home/fabricant-admin/fabricant-host/.venv/bin/activate
           ansible-playbook playbook.yaml
           popd
