@@ -10,7 +10,7 @@ fabricant.ucsd.edu configuration
 ```shell
 git clone git@github.com:KastnerRG/fabricant-host.git /home/fabricant-admin/fabricant-host
 ```
-1. Install Bitwarden Client
+5. Install Bitwarden Client
 ```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash # install nvm
 source ~/.bashrc # activate nvm
@@ -20,19 +20,19 @@ npm install -g @bitwarden/cli # installs bw
 bw config server https://vault.e4e-gateway.ucsd.edu # configures bw to our vault
 bw login # Logs in
 ```
-1. Bootstrap creds
+6. Bootstrap creds
 ```shell
 bw unlock --raw > ~/fabricant-host/.bw_session
 ```
-1. Create a venv at `~/fabricant-host/.venv`
+7. Create a venv at `~/fabricant-host/.venv`
 ```shell
 python3 -m venv ~/fabricant-host/.venv
 ```
-1. Activate venv
+8. Activate venv
 ```shell
 source ~/fabricant-host/.venv/bin/activate
 ```
-1. Install dependencies
+9. Install dependencies
 ```shell
 python -m pip install --upgrade pip poetry
 cd ~/fabricant-host/
