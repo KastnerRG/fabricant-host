@@ -7,11 +7,11 @@ fabricant.ucsd.edu configuration
 `. Ensure that the system can SSH into itself
 1. Install `sudo`, `git`, `python3.13-venv`
 1. Clone this repo
-```
+```shell
 git clone git@github.com:KastnerRG/fabricant-host.git /home/fabricant-admin/fabricant-host
 ```
 1. Install Bitwarden Client
-```
+```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash # install nvm
 source ~/.bashrc # activate nvm
 nvm install v24.3.0 # install node 24.3.0
@@ -21,24 +21,27 @@ bw config server https://vault.e4e-gateway.ucsd.edu # configures bw to our vault
 bw login # Logs in
 ```
 1. Bootstrap creds
-```
+```shell
 bw unlock --raw > ~/fabricant-host/.bw_session
 ```
 1. Create a venv at `~/fabricant-host/.venv`
-```
+```shell
 python3 -m venv ~/fabricant-host/.venv
 ```
 1. Activate venv
-```
+```shell
 source ~/fabricant-host/.venv/bin/activate
 ```
 1. Install dependencies
-```
+```shell
 python -m pip install --upgrade pip poetry
 cd ~/fabricant-host/
 poetry install
 ```
-1. Install
+1. Install GitHub Runner
+Instead of running `./run.sh`, execute the following
+```shell
+sudo ./svc.sh install fabricant-admin
+sudo ./svc.sh start
 ```
-ansible-playbook playbook.yml
-```
+1. Navigate to the most recent action and rerun it.
