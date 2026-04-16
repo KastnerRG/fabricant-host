@@ -38,10 +38,10 @@ python -m pip install --upgrade pip poetry
 cd ~/fabricant-host/
 poetry install
 ```
-1. Install GitHub Runner
+10. Install GitHub Runner
 Instead of running `./run.sh`, execute the following
 ```shell
 sudo ./svc.sh install fabricant-admin
 sudo ./svc.sh start
 ```
-1. Navigate to the most recent action and rerun it.
+11. Navigate to the most recent action and rerun it.
